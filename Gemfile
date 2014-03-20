@@ -1,5 +1,17 @@
 source 'https://rubygems.org'
 
+# Devise gem for authentication and authorization
+gem 'devise'
+
+
+# Foundation for styling
+gem 'foundation-rails'
+
+
+# to deploy correctly to heroku
+gem 'rails_12factor', group: :production
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
@@ -31,6 +43,20 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+group :development, :test do
+  gem 'annotate'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'database_cleaner'
+  gem 'dotenv-rails'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
