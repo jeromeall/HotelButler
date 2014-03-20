@@ -1,6 +1,9 @@
 HotelButler::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Add Modernizr to precompiled assets for production in config/enviroments/production.rb.
+  config.assets.precompile += %w( vendor/modernizr.js )
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -77,4 +80,8 @@ HotelButler::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Add Modernizr to precompiled assets for production in config/enviroments/production.rb.
+  config.assets.precompile += %w( vendor/modernizr.js )
+
 end
