@@ -7,6 +7,9 @@ gem 'devise'
 # Foundation for styling
 gem 'foundation-rails'
 
+# Angularjs Gem
+gem 'angularjs-rails'
+
 
 # to deploy correctly to heroku
 gem 'rails_12factor', group: :production
