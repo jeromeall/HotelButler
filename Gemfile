@@ -11,6 +11,7 @@ gem 'foundation-rails'
 gem 'angularjs-rails'
 
 
+
 # to deploy correctly to heroku
 gem 'rails_12factor', group: :production
 

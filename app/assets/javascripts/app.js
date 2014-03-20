@@ -1,0 +1,1 @@
+hotelButler = angular.module("hotelButler", []);
