@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321195304) do
+ActiveRecord::Schema.define(version: 20140321201634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,8 +48,22 @@ ActiveRecord::Schema.define(version: 20140321195304) do
     t.integer  "room_num"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "vacant_stat"
   end
 
   add_index "rooms", ["hotel_id"], name: "index_rooms_on_hotel_id", using: :btree
+
+  create_table "stays", force: true do |t|
+    t.integer  "room_id"
+    t.integer  "guest_id"
+    t.datetime "checkin_date"
+    t.datetime "checkout_date"
+    t.string   "res_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stays", ["guest_id"], name: "index_stays_on_guest_id", using: :btree
+  add_index "stays", ["room_id"], name: "index_stays_on_room_id", using: :btree
 
 end
