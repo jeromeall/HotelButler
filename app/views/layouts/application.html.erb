@@ -10,11 +10,10 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
-
   <body ng-app="hotelButler">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
+    <%= yield %>
     <div ng-view></div>
   </body>
 </html>
