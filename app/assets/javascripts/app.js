@@ -1,1 +1,4 @@
-hotelButler = angular.module("hotelButler", []);
+hotelButler = angular.module("hotelButler", [
+  "hotelButlerRouter",
+  "hotelButlerCtrls"
+  ]);
