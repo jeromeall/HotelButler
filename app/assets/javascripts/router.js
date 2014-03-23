@@ -11,6 +11,6 @@ hotelButlerRouter.config(['$routeProvider',function($routeProvider){
     }).
     when('/new',{
       templateUrl: "templates/stays/new.html",
-      controller: "staysCtrl"
+      controller: "newStayCtrl"
     });
 }]);

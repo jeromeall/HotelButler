@@ -3,6 +3,7 @@ HotelButler::Application.routes.draw do
   devise_for :guests
   root "sites#index"
   get "/stay", to: "stays#index", as: "stay"
+  get "/hotels", to: "stays#hotels", as: "hotels"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

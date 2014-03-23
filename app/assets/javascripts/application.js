@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ui-date/bower_components/jquery-ui/ui/jquery-ui
 //= require foundation
 //= require foundation
 //= require angular.min
 //= require angular-route
 //= require angular-resource.min
+//= require ui-date/src/date
 //= require_tree .
 $(function(){ $(document).foundation(); });
