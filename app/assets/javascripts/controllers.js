@@ -4,10 +4,10 @@ hotelButlerCtrls.controller('staysCtrl',['$scope','$location','$rootScope', 'Sta
   $scope.stays = Stay.query();
 
   $scope.newStay = function() {
-    if($scope.stays === []){
-      return true;
-    }else{
+    if($scope.stays !== []){
       return false;
+    }else{
+      return true;
     }
   };
 
