@@ -2,7 +2,9 @@
 var hotelButlerRouter = angular.module("hotelButlerRouter", ["ngRoute"]);
 
 
-hotelButlerRouter.config(['$routeProvider',function($routeProvider){
+hotelButlerRouter.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvider){
+  authToken = $("meta[name=\"csrf-token\"]").attr("content");
+  $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
   $routeProvider.
     when("/",
     {

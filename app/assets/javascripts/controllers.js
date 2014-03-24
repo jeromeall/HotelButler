@@ -14,6 +14,7 @@ hotelButlerCtrls.controller('staysCtrl',['$scope','Stay', function($scope, Stay)
 
 
   $scope.createStay = function(){
+    console.log($);
     Stay.save($scope.stay);
   };
 
