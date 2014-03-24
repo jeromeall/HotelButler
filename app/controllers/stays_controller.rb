@@ -16,6 +16,7 @@ class StaysController < ApplicationController
     stay = Stay.new(safe_params)
     stay.guest_id = current_guest.id
     stay.room_id = Hotel.find(params[:hotel_id]).rooms.where(vacant_stat: true).first.id
+    binding.pry
     stay.save
 
 
