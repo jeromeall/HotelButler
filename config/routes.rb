@@ -5,7 +5,10 @@ HotelButler::Application.routes.draw do
   get "/home", to: "application#index", as: "home"
   get "/hotels", to: "stays#hotels", as: "hotels"
 
-  resources :stays, :defaults => {format: :json} 
+  resources :stays, :defaults => {format: :json} do
+    resources :housekeepings, :defaults => {format: :json}
+    resources :concierges, :defaults => {format: :json}
+  end
   
 
 end
