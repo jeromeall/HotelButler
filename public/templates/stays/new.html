@@ -1,10 +1,40 @@
 this is where the form for a new trip goes
 
 <form name="newStayForm" ng-controller="newStayCtrl" class="stay-form">
-   <label>Hotel Name</label><select ng-model="stay.hotel_id" ng-options="h.id as h.name for h in hotels"></select>
-   <label>Reservation#</label><input type="text" ng-model="stay.res_num">
-   <label>Checkin Date</label><input ui-date='dateOptions' name="checkinDate" ng-model="stay.checkin_date">
-   <label>Checkout Date</label><input ui-date='dateOptions' name="checkoutDate" ng-model="stay.checkout_date">
-   <button ng-click="createStay()">Create Stay</button>
+ <label>Hotel Name</label>
+ <select 
+  ng-model="stay.hotel_id" 
+  ng-options="h.id as h.name for h in hotels"
+  required="true"
+  name="hotel"
+  ></select>
+  <span ng-show="hotel.$error.hotelRequired">Required!</span>
+ <label>Reservation#</label>
+ <input 
+  type="text" 
+  ng-model="stay.res_num"
+  name="reservation"
+  required="true"
+  >
+  <span ng-show="reservation.$error.reservationRequired">Required!</span>  
+ <label>Checkin Date</label>
+ <input 
+  ui-date='dateOptions' 
+  name="checkinDate" 
+  ng-model="stay.checkin_date"
+  name="checkin"
+  required="true"
+  >
+  <span ng-show="checkin.$error.checkinRequired">Required!</span>  
+ <label>Checkout Date</label>
+ <input 
+  ui-date='dateOptions' 
+  name="checkoutDate" 
+  ng-model="stay.checkout_date"
+  name="checkout"
+  required="true"
+  >
+  <span ng-show="checkout.$error.checkoutRequired">Required!</span>  
+ <button ng-click="createStay()">Create Stay</button>
 
 </form>

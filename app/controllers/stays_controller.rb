@@ -4,7 +4,7 @@ class StaysController < ApplicationController
   def index 
     respond_to do |f|    
       f.html { render layout: false }
-      f.json { render json: Stay.all }
+      f.json { render json: Stay.where(guest_id: current_guest.id) }
     end
   end
 
@@ -16,7 +16,6 @@ class StaysController < ApplicationController
     stay = Stay.new(safe_params)
     stay.guest_id = current_guest.id
     stay.room_id = Hotel.find(params[:hotel_id]).rooms.where(vacant_stat: true).first.id
-    binding.pry
     stay.save
 
 
