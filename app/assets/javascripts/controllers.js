@@ -1,16 +1,16 @@
 var hotelButlerCtrls = angular.module("hotelButlerCtrls", []);
 
-hotelButlerCtrls.controller('staysCtrl',['$scope','Stay', function($scope, Stay){
-  $scope.stays = Stay.query();
+hotelButlerCtrls.controller('staysCtrl',['$scope','Stays', function($scope, Stays){
+  $scope.stays = Stays.query();
 
   $scope.hotels = Hotel.query();
 
 }])
 
-.controller('newStayCtrl',['$scope', 'Stay', 'Hotel', function($scope, Stay, Hotel){
-  $scope.stays = Stay.query();
+.controller('newStayCtrl',['$scope','Stay', 'newStay', 'Hotel', function($scope, Stays, newStay, Hotel){
+  $scope.stays = Stays.query();
 
-  $scope.stay = new Stay();
+  $scope.stay = newStay.query();
 
 
   $scope.createStay = function(){

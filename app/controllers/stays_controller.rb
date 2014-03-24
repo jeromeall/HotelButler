@@ -4,8 +4,15 @@ class StaysController < ApplicationController
   def index 
     respond_to do |f|
       f.html { render layout: false}
-      f.json { render json: Stay.guest_stays(current_guest) }
+      f.json { render json: {"stays" => Stay.where(guest_id: current_guest.id) } }
     end
+  end
+
+  def new
+    respond_to do |f|
+      f.html { render layout: false}
+      f.json { render json: {"stay" => Stay.guest_stays(current_guest)} }
+    end    
   end
 
   def create
