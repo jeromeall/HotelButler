@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324233545) do
+ActiveRecord::Schema.define(version: 20140324233920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "concierges", force: true do |t|
+    t.integer  "stay_id"
+    t.string   "event"
+    t.integer  "num_party"
+    t.datetime "event_date"
+    t.text     "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "concierges", ["stay_id"], name: "index_concierges_on_stay_id", using: :btree
 
   create_table "guests", force: true do |t|
     t.string   "email",                  default: "", null: false
