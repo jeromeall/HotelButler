@@ -1,40 +1,57 @@
 this is where the form for a new trip goes
 
-<form name="newStayForm" ng-controller="newStayCtrl" class="stay-form">
- <label>Hotel Name</label>
- <select 
-  ng-model="stay.hotel_id" 
-  ng-options="h.id as h.name for h in hotels"
-  required="true"
-  name="hotel"
-  ></select>
-  <span ng-show="hotel.$error.hotelRequired">Required!</span>
- <label>Reservation#</label>
- <input 
-  type="text" 
-  ng-model="stay.res_num"
-  name="reservation"
-  required="true"
-  >
-  <span ng-show="reservation.$error.reservationRequired">Required!</span>  
- <label>Checkin Date</label>
- <input 
-  ui-date='dateOptions' 
-  name="checkinDate" 
-  ng-model="stay.checkin_date"
-  name="checkin"
-  required="true"
-  >
-  <span ng-show="checkin.$error.checkinRequired">Required!</span>  
- <label>Checkout Date</label>
- <input 
-  ui-date='dateOptions' 
-  name="checkoutDate" 
-  ng-model="stay.checkout_date"
-  name="checkout"
-  required="true"
-  >
-  <span ng-show="checkout.$error.checkoutRequired">Required!</span>  
- <button ng-click="createStay()">Create Stay</button>
+<form name="newStayForm" ng-submit="createStay(stayForm.$valid)" ng-controller="newStayCtrl" class="stayForm" novalidate>
+
+  <!-- Hotel -->
+  <div class="form-group">
+   <label>Hotel Name</label>
+   <input 
+   ng-model="stay.hotel_id" 
+   ng-select="h.id as h.name for h in hotels"
+   name="hotelName"
+   required
+   >
+   <span ng-show="newStayForm.hotelName.$invalid && newStayForm.hotelName.$pristine ">Required!</span>
+ </div>
+
+<!-- Reservation Number -->
+ <div class="form-group">
+   <label>Reservation#</label>
+   <input 
+   type="text" 
+   ng-model="stay.res_num"
+   name="reservation"
+   required
+   ng-minlength="5"
+   ng-maxlength="5"
+   >
+   <span ng-show="newStayForm.reservation.$invalid && newStayForm.reservation.$pristine ">Required!</span>
+   <span ng-show="newStayForm.reservation.$error.minlength">Res# too short!</span>
+   <span ng-show="newStayForm.reservation.$error.maxlength">Res# too long!</span>
+ </div>
+
+ <div class="form-group">
+   <label>Checkin Date</label>
+   <input 
+   ui-date='dateOptions' 
+   name="checkinDate" 
+   ng-model="stay.checkin_date"
+   required="true"
+   >
+   <span ng-show="newStayForm.checkinDate.$invalid && newStayForm.checkinDate.$pristine ">Required!</span>
+ </div>
+
+ <div class="form-group">
+   <label>Checkout Date</label>
+   <input 
+   ui-date='dateOptions' 
+   name="checkoutDate" 
+   ng-model="stay.checkout_date"
+   required="true"
+   >
+   <span ng-show="newStayForm.checkoutDate.$invalid && newStayForm.checkoutDate.$pristine ">Required!</span>
+ </div>
+
+ <button type="submit" ng-disabled="newStayForm.$invalid">Create Stay</button>
 
 </form>

@@ -24,11 +24,11 @@ hotelButlerCtrls.controller('staysCtrl',['$scope','Stay', function($scope, Stay)
   };
 
 
-
-  $scope.createStay = function(){
-    console.log($scope.stay);
-    Stay.save($scope.stay);
-    $location.path("/");
+  $scope.createStay = function(isValid){
+    if(isValid){
+      Stay.save($scope.stay);
+      $location.path("/");
+    }
   };
 
   $scope.hotels = Hotel.query();
@@ -39,3 +39,10 @@ hotelButlerCtrls.controller('staysCtrl',['$scope','Stay', function($scope, Stay)
     yearRange: '2014:2020'
   };
 }]);
+
+
+
+
+
+
+

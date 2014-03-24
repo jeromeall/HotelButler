@@ -23,7 +23,6 @@ class StaysController < ApplicationController
 
   def hotels
    render json: Hotel.all 
-
   end
 
   def safe_params
