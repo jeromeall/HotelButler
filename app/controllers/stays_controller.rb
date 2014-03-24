@@ -11,7 +11,7 @@ class StaysController < ApplicationController
   def hotels
     respond_to do |f|
       f.html { render layout: false}
-      f.json { render json: Hotel.all}
+      f.json { render json: Hotel.all }
     end
   end
 end

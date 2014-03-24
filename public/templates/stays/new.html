@@ -1,6 +1,9 @@
 this is where the form for a new trip goes
 {{hotels}}
 <form name="newStayForm" ng-controller="newStayCtrl" class="stay-form">
-   <h4>Hotel Name <select ng-model="hotels" ng-options="h.name for h in hotels"></select></h4>
-   <h4>Checkin Date<input ui-date='dateOptions' name="checkinDate">
-</form>
+   <label>Hotel Name</label><select ng-model="hotels" ng-options="h.name for h in hotels"></select>
+   <label>Reservation#</label><input type="text" ng-model="stay.res_num">
+   <label>Checkin Date</label><input ui-date='dateOptions' name="checkinDate" ng-model="stay.checkin_date">
+   <label>Checkout Date</label><input ui-date='dateOptions' name="checkoutDate" ng-model="stay.checkout_date">
+   <button ng-click="createStay(stay)">Create Stay</button
+></form>
