@@ -46,6 +46,8 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     // Grab the stay from the server
     $scope.params = $routeParams;
     $scope.stay = Stay.get({id: $routeParams.id});
+
+    $scope.stayId = $routeParams.id;
   }]);
 
 

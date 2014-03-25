@@ -4,4 +4,7 @@ angular.module('stayServices', ['ngResource'])
   })
   .factory('Hotel', function($resource) {
     return $resource('/hotels/:id', { id: '@id'});
+  })
+  .factory('Concierge', function($resource){
+    return $resource('/stays/:stayId/concierges/:id', {stayId: '@stayId', id: '@id'});
   });
