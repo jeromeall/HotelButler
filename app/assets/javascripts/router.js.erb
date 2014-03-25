@@ -8,15 +8,15 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider','$locationProvider', 
   $routeProvider.
     when("/",
     {
-      templateUrl: "templates/stays/index.html",
+      templateUrl: "<%= asset_path('stays/index.html') %>",
       controller: "stayIndexCtrl"
     }).
     when('/stays/new',{
-      templateUrl: "templates/stays/new.html",
+      templateUrl: "<%= asset_path('stays/new.html') %>",
       controller: "stayCreateCtrl"
     }).
     when('/stays/:id', {
-      templateUrl: "<%= asset_path('show.html') %>",
+      templateUrl: "<%= asset_path('stays/show.html') %>",
       controller: "stayShowCtrl"
     });
 }]);
