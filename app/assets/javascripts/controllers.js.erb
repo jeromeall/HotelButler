@@ -58,15 +58,16 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   $scope.createConcierge = function() {
     
     var concierge = new Concierge({
-      stay_id: parseInt($routeParams.stay_id),
       event_type: $scope.event_type,
       event_date: $scope.event_date,
       num_party: parseInt($scope.num_party),
       details: $scope.details
     });
 
-    concierge.$save(function(response) {
-      $scope.concierges.unshift(response);
+    concierge.$save({
+      stay_id: parseInt($routeParams.stay_id)
+    },
+      function(response) {
       console.log($scope.concierges);
       // $location.path('/');
     }, function(response) {
