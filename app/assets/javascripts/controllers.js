@@ -1,8 +1,10 @@
 var hotelButlerCtrls = angular.module("hotelButlerCtrls", []);
 
 hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, Stay){
+  //Get all the stays
   $scope.stays = Stay.query();
 
+  //nghide function for new form creation if no stays exist
   $scope.existingStay = function(){
     if($scope.stays === []){
       return false;
@@ -13,31 +15,32 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
 }])
 
-.controller('stayCreateCtrl',['$scope','Stay',  'Hotel','$location', function($scope, Stay, Hotel, $location){
-  $scope.stays = Stay.query();
-
-  $scope.stay = {
-    hotel_id: null,
-    res_num: null,
-    checkin_date: null,
-    checkout_date: null 
-  };
-
-
-  $scope.createStay = function(isValid){
-    if(isValid){
-      Stay.save($scope.stay);
-      $location.path("/");
-    }
-  };
-
+.controller('stayCreateCtrl',['$scope','$location','Stay', 'Hotel', function($scope,$location, Stay, Hotel ){
+  //Query hotels for drop down select
   $scope.hotels = Hotel.query();
 
+  //date options for datepicker
   $scope.dateOptions = {
     changeYear: true,
     changeMonth: true,
     yearRange: '2014:2020'
   };
+
+  $scope.createStay = function() {
+    //create the stay object to send to back-end
+    var stay = new Stay($scope.stay);
+
+    stay.$save(function() {
+    
+      // redirect to root path CHANGE LATER TO STAY
+      $location.path("/");
+    }, function(response) {
+      //post response objects to the view
+      $scope.errors = response.data.errors;
+    });
+  };
+  
+
 }])
 
 .controller('stayShowCtrl',['$scope','Stay',  'Hotel','$location', function($scope, Stay, Hotel, $location){

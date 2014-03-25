@@ -1,16 +1,16 @@
 this is where the form for a new trip goes
 
-<form name="newStayForm" ng-submit="createStay(stayForm.$valid)" ng-controller="newStayCtrl" class="stayForm" novalidate>
+<form name="newStayForm" ng-submit="createStay()" ng-controller="stayCreateCtrl" class="stayForm" novalidate>
 
   <!-- Hotel -->
   <div class="form-group">
    <label>Hotel Name</label>
-   <input 
+   <select 
    ng-model="stay.hotel_id" 
-   ng-select="h.id as h.name for h in hotels"
+   ng-options="h.id as h.name for h in hotels"
    name="hotelName"
    required
-   >
+   ></select>
    <span ng-show="newStayForm.hotelName.$invalid && newStayForm.hotelName.$pristine ">Required!</span>
  </div>
 

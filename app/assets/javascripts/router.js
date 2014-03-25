@@ -11,7 +11,7 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider',function($routeProvid
       templateUrl: "templates/stays/index.html",
       controller: "stayIndexCtrl"
     }).
-    when('/new',{
+    when('/stays/new',{
       templateUrl: "templates/stays/new.html",
       controller: "stayCreateCtrl"
     });

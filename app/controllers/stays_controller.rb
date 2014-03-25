@@ -2,14 +2,11 @@ class StaysController < ApplicationController
   before_filter :authenticate_guest!
   respond_to :json
   def index 
-    respond_to do |f|    
-      f.html { render layout: false }
-      f.json { render json: Stay.where(guest_id: current_guest.id) }
-    end
+      render json: Stay.where(guest_id: current_guest.id)
   end
 
   def new
-    render json: {"stay" => Stay.guest_stays(current_guest)} 
+    render json: {"stay" => Stay.guest_stays(current_guest) }
   end
 
   def create
