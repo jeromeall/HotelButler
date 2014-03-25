@@ -7,7 +7,7 @@ class HousekeepingsController < ApplicationController
 
   def create
     stay = Stay.find(params[:stay_id])
-    housekeeping = stay.housekeepings.new(safe_params)
+    housekeeping = stay.housekeepings.create(safe_params)
     render json: housekeeping
   end
 

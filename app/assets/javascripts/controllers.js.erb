@@ -67,8 +67,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     concierge.$save({
       stay_id: parseInt($routeParams.stay_id)
     },
-      function(response) {
-      console.log($scope.concierges);
+      function() {
       // $location.path('/');
     }, function(response) {
       //post response objects to the view
@@ -78,8 +77,25 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
   }])
 
-  .controller('housekeepingCreateCtrl', ['$scope', 'Housekeeping', '$rootParams','$location', 
-  function($scope, Housekeeping, $rootParams, $location){
+  .controller('housekeepingCreateCtrl', ['$scope', 'Housekeeping', '$routeParams','$location', 
+  function($scope, Housekeeping, $routeParams, $location){
+
+
+    $scope.createHousekeeping = function(){
+      
+    var housekeeping = new Housekeeping({
+      request: $scope.request
+    });
+
+    housekeeping.$save({
+      stay_id: parseInt($routeParams.stay_id)
+    },
+    function() {
+      // $location.path('/')
+    }, function(response) {
+      $scope.errors = response.data.errors;
+    });
+  };
 
   }]);
 
