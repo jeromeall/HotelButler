@@ -22,5 +22,9 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider','$locationProvider', 
     when('/stays/:stay_id/concierge/new', {
       templateUrl: "<%= asset_path('concierge/new.html') %>",
       controller: "conciergeCreateCtrl"
+    }).
+    when('/stays/:stay_id/housekeeping/new', {
+      templateUrl: "<%= asset_path('housekeeping/new.html') %>",
+      controller: "housekeepingCreateCtrl"
     });
 }]);
