@@ -42,14 +42,12 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   
 }])
 
-.controller('stayShowCtrl',['$scope','Stay','$location','$routeParams', function($scope, Stay, $location, $routeParams){
-    // Grab the stay from the server
-    $scope.params = $routeParams;
-    $scope.stay = Stay.get({id: $routeParams.id});
-
-    $scope.stayId = $routeParams.id;
+.controller('conciergeCreateCtrl',['$scope','Concierge','$routeParams', function($scope, Concierge, $routeParams){
+   $scope.stay_id = $routeParams;
+   $scope.concierge = Concierge.query({stayId: $routeParams.stayId});
   }]);
 
+// .controller('conciergeCreateCtrl')
 
 
 
