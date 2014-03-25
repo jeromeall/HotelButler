@@ -43,14 +43,21 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 }])
 
 .controller('conciergeCreateCtrl',['$scope','Concierge','$routeParams', function($scope, Concierge, $routeParams){
-   $scope.stay_id = $routeParams;
-   $scope.concierge = Concierge.query({stayId: $routeParams.stayId});
-
+   
+   $scope.concierges = Concierge.query({stayId: $routeParams.stayId});
    $scope.dateOptions = {
     changeYear: true,
     changeMonth: true,
     yearRange: '2014:2020'
   };
+
+  $scope.createConcierge = function() {
+    var concierge = new Concierge({stayId: $routeParams.stayId}, $scope.concierge);
+    concierge.$save(function() {
+      console.log(concierge);
+    });
+  };
+
   }]);
 
 // .controller('conciergeCreateCtrl')
