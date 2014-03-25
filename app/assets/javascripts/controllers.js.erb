@@ -15,7 +15,9 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
 }])
 
-.controller('stayCreateCtrl',['$scope','$location','Stay', 'Hotel', function($scope,$location, Stay, Hotel){
+.controller('stayCreateCtrl',['$scope','$location','Stay', 'Hotel', 
+  function($scope,$location, Stay, Hotel){
+
   //Query hotels for drop down select
   $scope.hotels = Hotel.query();
 
@@ -43,7 +45,8 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   
 }])
 
-.controller('conciergeCreateCtrl',['$scope','Concierge','$routeParams', function($scope, Concierge, $routeParams){
+.controller('conciergeCreateCtrl',['$scope','Concierge','$routeParams', '$location',
+   function($scope, Concierge, $routeParams, $location){
    
    $scope.concierges = Concierge.query({stay_id: $routeParams.stay_id});
    $scope.dateOptions = {
@@ -62,15 +65,22 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       details: $scope.details
     });
 
-    console.log(concierge);
-    concierge.$save(function() {
-      console.log(concierge);
+    concierge.$save(function(response) {
+      $scope.concierges.unshift(response);
+      console.log($scope.concierges);
+      // $location.path('/');
+    }, function(response) {
+      //post response objects to the view
+      $scope.errors = response.data.errors;
     });
   };
 
   }]);
 
-// .controller('conciergeCreateCtrl')
+.controller('housekeepingCreateCtrl', ['$scope', 'Housekeeping', '$rootParams','$location', 
+  function($scope, Housekeeping, $rootParams, $location){
+    
+  }])
 
 
 
