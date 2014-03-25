@@ -9,10 +9,10 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider',function($routeProvid
     when("/",
     {
       templateUrl: "templates/stays/index.html",
-      controller: "staysCtrl"
+      controller: "stayIndexCtrl"
     }).
     when('/new',{
       templateUrl: "templates/stays/new.html",
-      controller: "newStayCtrl"
+      controller: "stayCreateCtrl"
     });
 }]);

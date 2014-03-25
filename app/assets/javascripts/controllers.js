@@ -1,9 +1,9 @@
 var hotelButlerCtrls = angular.module("hotelButlerCtrls", []);
 
-hotelButlerCtrls.controller('staysCtrl',['$scope','Stay', function($scope, Stay){
+hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, Stay){
   $scope.stays = Stay.query();
 
-  $scope.newStay = function(){
+  $scope.existingStay = function(){
     if($scope.stays === []){
       return false;
     }else{
@@ -13,7 +13,7 @@ hotelButlerCtrls.controller('staysCtrl',['$scope','Stay', function($scope, Stay)
 
 }])
 
-.controller('newStayCtrl',['$scope','Stay',  'Hotel','$location', function($scope, Stay, Hotel, $location){
+.controller('stayCreateCtrl',['$scope','Stay',  'Hotel','$location', function($scope, Stay, Hotel, $location){
   $scope.stays = Stay.query();
 
   $scope.stay = {
@@ -38,8 +38,10 @@ hotelButlerCtrls.controller('staysCtrl',['$scope','Stay', function($scope, Stay)
     changeMonth: true,
     yearRange: '2014:2020'
   };
-}]);
+}])
 
+.controller('stayShowCtrl',['$scope','Stay',  'Hotel','$location', function($scope, Stay, Hotel, $location){
+  }]);
 
 
 
