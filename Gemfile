@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'devise'
 
 
+
 # Foundation for styling
 gem 'foundation-rails'
 
@@ -59,6 +60,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'quiet_assets'
 end
 
 
