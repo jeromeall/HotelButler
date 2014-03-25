@@ -15,7 +15,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
 }])
 
-.controller('stayCreateCtrl',['$scope','$location','Stay', 'Hotel', function($scope,$location, Stay, Hotel ){
+.controller('stayCreateCtrl',['$scope','$location','Stay', 'Hotel', function($scope,$location, Stay, Hotel){
   //Query hotels for drop down select
   $scope.hotels = Hotel.query();
 
@@ -31,19 +31,20 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     var stay = new Stay($scope.stay);
 
     stay.$save(function() {
-    
+      // console.log(stay.id);
       // redirect to root path CHANGE LATER TO STAY
-      $location.path("/");
+      $location.path("/stays/:" + stay.id);
     }, function(response) {
       //post response objects to the view
       $scope.errors = response.data.errors;
     });
   };
   
-
 }])
 
-.controller('stayShowCtrl',['$scope','Stay',  'Hotel','$location', function($scope, Stay, Hotel, $location){
+.controller('stayShowCtrl',['$scope','Stay','$location','$routeParams', function($scope, Stay, $location, $routeParams){
+    // Grab the stay from the server
+    $scope.stay = Stay.get({id: $routeParams.id})
   }]);
 
 

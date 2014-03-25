@@ -2,7 +2,7 @@
 var hotelButlerRouter = angular.module("hotelButlerRouter", ["ngRoute"]);
 
 
-hotelButlerRouter.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvider){
+hotelButlerRouter.config(['$routeProvider','$httpProvider','$locationProvider', function($routeProvider, $httpProvider, $locationProvider){
   authToken = $("meta[name=\"csrf-token\"]").attr("content");
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
   $routeProvider.
@@ -14,5 +14,9 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider',function($routeProvid
     when('/stays/new',{
       templateUrl: "templates/stays/new.html",
       controller: "stayCreateCtrl"
+    }).
+    when('/stays/:id', {
+      templateUrl: "templates/stays/show.html",
+      controller: "stayShowCtrl"
     });
 }]);

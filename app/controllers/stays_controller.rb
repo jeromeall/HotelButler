@@ -14,8 +14,11 @@ class StaysController < ApplicationController
     stay.guest_id = current_guest.id
     stay.room_id = Hotel.find(params[:hotel_id]).rooms.where(vacant_stat: true).first.id
     stay.save
+    render json: stay
+  end
 
-
+  def show
+    render json: Stay.find(params[:id])
   end
 
   def hotels
