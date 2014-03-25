@@ -28,6 +28,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
   $scope.createStay = function() {
     //create the stay object to send to back-end
+    console.log($scope.stay);
     var stay = new Stay($scope.stay);
 
     stay.$save(function() {
@@ -44,7 +45,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
 .controller('conciergeCreateCtrl',['$scope','Concierge','$routeParams', function($scope, Concierge, $routeParams){
    
-   $scope.concierges = Concierge.query({stayId: $routeParams.stayId});
+   $scope.concierges = Concierge.query({stay_id: $routeParams.stay_id});
    $scope.dateOptions = {
     changeYear: true,
     changeMonth: true,
@@ -52,7 +53,14 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   };
 
   $scope.createConcierge = function() {
-    var concierge = new Concierge({stayId: $routeParams.stayId}, $scope.concierge);
+    
+    var concierge = new Concierge({
+      stay_id: $routeParams.stay_id,
+      // event: $scope.event,
+      num_party: parseInt($scope.num_party)
+    });
+
+    console.log(concierge);
     concierge.$save(function() {
       console.log(concierge);
     });

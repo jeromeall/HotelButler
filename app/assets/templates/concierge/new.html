@@ -7,7 +7,7 @@ This is where the concierge request goes
    <label>What would you like to do?</label>
    <input 
    type="text" 
-   ng-model="concierge.event"
+   ng-model="event"
    name="event"
    required
    >
@@ -18,7 +18,7 @@ This is where the concierge request goes
    <input 
    ui-date='dateOptions' 
    name="when" 
-   ng-model="concierge.event_date"
+   ng-model="event_date"
    required="true"
    >
  </div>
@@ -27,7 +27,7 @@ This is where the concierge request goes
    <label>How many people?</label>
    <input 
    type="text" 
-   ng-model="concierge.num_party"
+   ng-model="num_party"
    name="partySize"
    required
    >
@@ -37,7 +37,7 @@ This is where the concierge request goes
    <label>Details (optional)</label>
    <textarea 
    type="text" 
-   ng-model="concierge.details"
+   ng-model="details"
    name="details"
    ></textarea>
 </div>
