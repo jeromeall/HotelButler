@@ -55,7 +55,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   $scope.createConcierge = function() {
     
     var concierge = new Concierge({
-      stay_id: $routeParams.stay_id,
+      stay_id: parseInt($routeParams.stay_id),
       event_type: $scope.event_type,
       event_date: $scope.event_date,
       num_party: parseInt($scope.num_party),
