@@ -99,14 +99,33 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
   }])
 
-  .controller('roomserviceCreateCtrl', ['$scope', 'Roomservice','MenuItem', '$routeParams', '$location',
-    function($scope, Roomservice, MenuItem, $routeParams, $location) {
+  .controller('roomserviceCreateCtrl', ['$scope', 'Roomservice','MenuItem', 
+    '$routeParams', '$location','OrderDetail',
+    function($scope, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
+      //Query menu items
       $scope.menu_items = MenuItem.query({stay_id: $routeParams.stay_id});
-    }
 
-    ]);
+      $scope.item_details;
+
+      $scope.order_details = [];
+
+      $scope.item_details = {
+        menu_item_id: null,
+        room_service_id: null,
+        quantity: 0
+      };
+
+      //increase quantity for selected menu item
+      $scope.addQuantity = function(index){
+
+      };
+
+  
+  
+
+    
 
 
 
 
-
+}]);
