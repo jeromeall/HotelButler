@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325215726) do
+ActiveRecord::Schema.define(version: 20140326001610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,26 @@ ActiveRecord::Schema.define(version: 20140325215726) do
   end
 
   add_index "housekeepings", ["stay_id"], name: "index_housekeepings_on_stay_id", using: :btree
+
+  create_table "menu_items", force: true do |t|
+    t.integer  "hotel_id"
+    t.string   "name"
+    t.text     "description"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "menu_items", ["hotel_id"], name: "index_menu_items_on_hotel_id", using: :btree
+
+  create_table "order_details", force: true do |t|
+    t.integer  "menu_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "roomservice"
+  end
+
+  add_index "order_details", ["menu_item_id"], name: "index_order_details_on_menu_item_id", using: :btree
 
   create_table "rooms", force: true do |t|
     t.integer  "hotel_id"
