@@ -1,1 +1,7 @@
-{{menu_items}}
+
+
+<div ng-repeat="menu_item in menu_items">
+  <h2>{{menu_item.name}}</h2>
+  <label>Description: </label> {{menu_item.description}}
+  <label>Price: </label>{{menu_item.price | currency}}
+</div>
