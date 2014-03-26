@@ -12,7 +12,7 @@ angular.module('stayServices', ['ngResource'])
     return $resource('/stays/:stay_id/housekeepings/:id', {stay_id: '@stay_id', id: '@id'});
   })
   .factory('MenuItem', function($resource){
-    return $resource('/hotels/:hotel_id/menu_items/:id', {stay_id: '@hotel_id', id: '@id'});
+    return $resource('/stays/:stay_id/menu_items/:id', {stay_id: '@stay_id',  id: '@id'});
   })
   .factory('Roomservice', function($resource){
     return $resource('/stays/:stay_id/roomservices/:id', {stay_id: '@stay_id', id: '@id'});

@@ -26,5 +26,9 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider','$locationProvider', 
     when('/stays/:stay_id/housekeeping/new', {
       templateUrl: "<%= asset_path('housekeeping/new.html') %>",
       controller: "housekeepingCreateCtrl"
+    }).
+    when('/stays/:stay_id/roomservice/new', {
+      templateUrl: "<%= asset_path('roomservice/new.html') %>",
+      controller: "roomserviceCreateCtrl"
     });
 }]);
