@@ -97,7 +97,14 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     });
   };
 
-  }]);
+  }])
+
+  .controller('roomserviceCreateCtrl', ['$scope', 'Roomservice','MenuItem', '$routeParams', '$location',
+    function($scope, Roomservice, MenuItem, $routeParams, $location) {
+      $scope.menu_item = MenuItem.query();
+    }
+    
+    ]);
 
 
 
