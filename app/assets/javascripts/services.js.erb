@@ -10,4 +10,6 @@ angular.module('stayServices', ['ngResource'])
   })
   .factory('Housekeeping', function($resource){
     return $resource('/stays/:stay_id/housekeepings/:id', {stay_id: '@stay_id', id: '@id'});
+  }).factory('Roomservice', function($resource){
+    return $resource('/stays/:stay_id/roomservices/:id', {stay_id: '@stay_id', id: '@id'});
   });
