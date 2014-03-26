@@ -1,7 +1,8 @@
-
-<div ng-repeat="menu_item in menu_items">
+{{menuItemsDetails()}}
+{{menu_items}}
+<div ng-repeat="menu_item in menuItemsDetails()">
   <h2>{{menu_item.name}}</h2>
   <label>Description: </label> {{menu_item.description}}
   <label>Price: </label>{{menu_item.price | currency}}
-  <button>-</button><p ng-model="item_details">{{item_details.quantity}}</p><button>+</button>
+  <button>-</button>{{menu_item.quantity}}</p><button>+</button>
 </div>
