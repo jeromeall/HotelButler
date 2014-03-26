@@ -3,7 +3,9 @@ HotelButler::Application.routes.draw do
   devise_for :guests
   root to: "sites#index"
   get "/home", to: "application#index", as: "home"
-  get "/hotels", to: "stays#hotels", as: "hotels"
+  resources :hotel, :defaults => {format: :json} do 
+    resources :menu_items, :defaults => {format: :json}
+  end
 
   resources :stays, :defaults => {format: :json} do
     resources :housekeepings, :defaults => {format: :json}
