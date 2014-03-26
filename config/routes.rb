@@ -9,7 +9,9 @@ HotelButler::Application.routes.draw do
   resources :stays, :defaults => {format: :json} do
     resources :housekeepings, :defaults => {format: :json}
     resources :concierges, :defaults => {format: :json}
-    resources :roomservices, :defaults => {format: :json}
+    resources :roomservices, :defaults => {format: :json} do
+      resources :order_details, :defaults => {format: :json}
+    end
     resources :menu_items, :defaults => {format: :json}
   end
   

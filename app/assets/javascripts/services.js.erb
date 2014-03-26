@@ -16,4 +16,7 @@ angular.module('stayServices', ['ngResource'])
   })
   .factory('Roomservice', function($resource){
     return $resource('/stays/:stay_id/roomservices/:id', {stay_id: '@stay_id', id: '@id'});
+  })
+  .factory('OrderDetail', function($resource){
+    return $resource('/stays/:stay_id/roomservices/:roomservice_id/order_details/:id', {stay_id: '@stay_id', roomservice_id: '@roomservice_id', id: "@id"});
   });

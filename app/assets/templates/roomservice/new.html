@@ -4,4 +4,5 @@
   <h2>{{menu_item.name}}</h2>
   <label>Description: </label> {{menu_item.description}}
   <label>Price: </label>{{menu_item.price | currency}}
+  <button>-</button><p ng-model="order_details">{{quantity}}</p><button>+</button>
 </div>
