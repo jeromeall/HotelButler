@@ -134,8 +134,8 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       housekeeping.$save({
         stay_id: parseInt($routeParams.stay_id)
       },
-      function() {
-      // $location.path('/')
+      function(response) {
+        $location.path('/stays/'+response.stay_id+'/housekeeping/'+response.id);
     }, function(response) {
       $scope.errors = response.data.errors;
     });
