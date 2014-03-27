@@ -1,8 +1,30 @@
+ 
+<div ng-show="!openModal">
+  {{openModal}}
+  <div>
+    <h2>{{currentItem.name}}</h2>
+    <p>{{currentItem.description}}</p>
+    <p>{{currentItem.price | currency }}</p>
+  </div>
 
-<div ng-repeat="menu_item in menu_items">
+  <form name="addItemToOrder" ng-controller="roomserviceCreateCtrl" class="roomserviceForm" novalidate>
+    <label>Quantity</label>
+    <select
+      ng-options="n as n for n in numItems"
+      ng-model="quantity"
+    ></select>
+
+    <label>Special Instructions</label>
+    <textarea
+      ng-model="instructions"
+    ></textarea>
+  </form>
+  <button ng-click="closeModal()">cancel</button>
+</div>
+
+<div ng-hide="!openModal" ng-repeat="menu_item in menu_items">
   <h2>{{menu_item.name}}</h2>
   <label>Description: </label> {{menu_item.description}}
   <label>Price: </label>{{menu_item.price | currency}}
-  {{menu_item.id}}
-  <button ng-click="addToOrder($index)">Add to Order</button>
+  <button ng-click="openOrderDetailsModal($index)">Add to Order</button>
 </div>

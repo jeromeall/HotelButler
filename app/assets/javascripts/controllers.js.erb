@@ -107,10 +107,39 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
       $scope.orderDetails = [];
 
+      //condition for opening modal to provide item details
+      $scope.openModal = true;
       
+      //item object for modal
+      $scope.currentItem = {
+        name: null,
+        price: null,
+        description: null,
+        menu_item_id: null,
+        roomservice_id: null,
+        instructions: null,
+      };
+
+      $scope.numItems = [1,2,3,4,5,6,7,8,9,10];
+
+      $scope.openOrderDetailsModal = function(index) {
+        $scope.openModal = false;
+        $scope.currentItem.name = $scope.menu_items[index].name;
+        $scope.currentItem.price = $scope.menu_items[index].price;
+        $scope.currentItem.description = $scope.menu_items[index].description;
+        $scope.currentItem.menu_item_id = $scope.menu_items[index].id;
+      };
+
+      $scope.closeModal = function(){
+        console.log($scope.openModal);
+        $scope.openModal = true;
+        return $scope.openModal;
+      };
+
+
       $scope.addToOrder = function(index){
         var itemTracker = [];
-        for(var item in $scope.orderDetails.length){
+        for(var item in $scope.orderDetails){
           if($scope.orderDetails[item].menu_item_id === $scope.menu_items[index].id){
             $scope.orderDetails[item].quantity +=1;
             itemTracker.push(item);
@@ -118,7 +147,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         }
         if(itemTracker.length === 0){
           var itemDetails = {
-            menu_item_id: $scope.menu_items[index].id,
+            menu_item_id: $scope.menu_items[index].id   ,
             room_service_id: null,
             quantity: 1
           };
