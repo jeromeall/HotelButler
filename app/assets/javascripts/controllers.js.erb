@@ -141,6 +141,8 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     });
     };
 
+    $scope.currentHousekeeping = Housekeeping.get({stay_id: $routeParams.stay_id, id: $routeParams.id});
+
   }])
 
 .controller('roomserviceCreateCtrl', ['$scope', 'Roomservice','MenuItem', 

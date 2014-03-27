@@ -11,6 +11,12 @@ class HousekeepingsController < ApplicationController
     render json: housekeeping
   end
 
+  def show
+    stay = Stay.find(params[:stay_id])
+    housekeeping = stay.housekeepings.find(params[:id])
+    render json: housekeeping
+  end
+
   def safe_params
     params.require(:housekeeping).permit(:request)
   end
