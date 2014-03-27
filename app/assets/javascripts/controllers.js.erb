@@ -109,13 +109,15 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     concierge.$save({
       stay_id: parseInt($routeParams.stay_id)
     },
-    function() {
-      // $location.path('/');
+    function(response) {
+      $location.path('/stays/'+response.stay_id+'/concierge/'+response.id);
     }, function(response) {
       //post response objects to the view
       $scope.errors = response.data.errors;
     });
   };
+
+  $scope.currentConcierge = Concierge.get({stay_id: $routeParams.stay_id, id: $routeParams.id});
 
 }])
 

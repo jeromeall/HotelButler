@@ -1,0 +1,11 @@
+<div class="row">
+  Thank you for your request! We will be in touch soon regarding the following: </br></br>
+  <label>Reservation</label><div>{{currentConcierge.event_type}}</div>
+  <label>Party Size</label><div>{{currentConcierge.num_party}}</div>
+  <label>Reservation Date</label><div>{{currentConcierge.event_date | date}}</div>
+  <label>Reservation Details</label><div>{{currentConcierge.details}}</div>
+</div>
+
+<div class="row">
+  <a href="#/stays/{{currentConcierge.stay_id}}">Main Menu</a>
+</div>
