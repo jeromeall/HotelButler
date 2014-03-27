@@ -1,4 +1,4 @@
-<div ng-show="checkedIn()">
+<div class="row" ng-show="checkedIn()">
   <a href="#/stays/{{stay_id}}/concierge/new">Concierge</a></br>
   <a href="#/stays/{{stay_id}}/housekeeping/new">Housekeeping</a></br>
   <a href="#/stays/{{stay_id}}/roomservice/new">Roomservice</a></br>
@@ -6,7 +6,7 @@
 
 <br>
 
-<div ng-hide="checkedIn()">
-  Thank you for creating a stay!
-  Sign back in after you are checked in to use HotelButler Services!
+<div class="row" ng-hide="checkedIn()">
+  If you have not checked in yet, please come back after you checkin to use HotelButler services</br>
+  If you are already checked out, you can no longer use HotelButler services for this stay
 </div>
