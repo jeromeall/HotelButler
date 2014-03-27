@@ -19,6 +19,6 @@
 //= require angular-route
 //= require angular-resource.min
 //= require underscore-min
-//= require ui-date/src/date
+//= require date
 //= require_tree .
 $(function(){ $(document).foundation(); });
