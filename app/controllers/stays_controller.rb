@@ -2,7 +2,7 @@ class StaysController < ApplicationController
   before_filter :authenticate_guest!
   respond_to :json
   def index 
-      render json: Stay.where(guest_id: current_guest.id).sort_by{|stay| stay.checkin_date}
+      render json: Stay.where(guest_id: current_guest.id)
   end
 
   def new

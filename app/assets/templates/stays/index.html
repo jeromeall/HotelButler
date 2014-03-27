@@ -4,10 +4,7 @@
 
 </div>
 
-<div id='noTrip' ng-hide="!existingStay()" class="ng-hide">
-  <div class="row" ng-repeat="stay in stays">
-  </div>
-
+<div id='noTrip' ng-show="existingStay()" class="ng-hide">
+  <a href="#/stays/{{nextStay().id}}">View your next Stay</a></br>
 </div>
-
 

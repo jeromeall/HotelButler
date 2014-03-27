@@ -4,9 +4,34 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   //Get all the stays
   $scope.stays = Stay.query();
 
+  $scope.nextStay = function(){
+    var arrOfTimesToCheckin = [];
+    for(var stay in $scope.stays){
+      var timeToCheckin = {
+        date_difference: null,
+        next_checkin: null
+      };
+      timeToCheckin.date_difference = (Date.parse($scope.stays[stay].checkin_date) - Date.now());
+      timeToCheckin.next_checkin = $scope.stays[stay];
+      arrOfTimesToCheckin.push(timeToCheckin);
+      
+    }
+    arrOfTimesToCheckin.sort(function compare(a,b) {
+      if (a.date_difference < b.date_difference)
+        return -1;
+      if (a.date_difference > b.date_difference)
+        return 1;
+      return 0;
+    });
+    return arrOfTimesToCheckin[0].next_checkin;
+  };
+
+
+
   //nghide function for new form creation if no stays exist
   $scope.existingStay = function(){
-    if($scope.stays === []){
+    console.log($scope.stays.length === 0);
+    if($scope.stays.length === 0){
       return false;
     }else{
       return true;
@@ -44,6 +69,22 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   };
   
 }])
+
+.controller('stayShowCtrl',['$scope', 'Stay', '$routeParams',
+  function($scope, Stay, $routeParams){
+    $scope.stay = Stay.get({id: $routeParams.id});
+
+    $scope.checkedIn = function(){
+      var checkin_date_diff = (Date.parse($scope.stay.checkin_date) - Date.now());
+      var checkout_date_diff= (Date.parse($scope.stay.checkout_date) - Date.now());
+      if(checkin_date_diff < 0 && checkout_date_diff > 0){
+        return true;
+      }else{
+        return false;
+      }
+    };
+  }
+  ])
 
 .controller('conciergeCreateCtrl',['$scope','Concierge','$routeParams', '$location',
  function($scope, Concierge, $routeParams, $location){
