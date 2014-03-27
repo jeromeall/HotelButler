@@ -4,6 +4,10 @@
 
 </div>
 
-<div id='noTrip' ng-hide="!existingStay()" class="ng-hide">This is where the upcoming stays show</div>
+<div id='noTrip' ng-hide="!existingStay()" class="ng-hide">
+  <div class="row" ng-repeat="stay in stays">
+  </div>
+
+</div>
 
 

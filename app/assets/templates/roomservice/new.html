@@ -7,19 +7,20 @@
     <p>{{currentItem.price | currency }}</p>
   </div>
 
-  <form name="addItemToOrder" ng-model="currentItem" ng-controller="roomserviceCreateCtrl" class="roomserviceForm" novalidate>
     <label>Quantity</label>
     <select
+      id="item_quantity"
       ng-options="n as n for n in numItems"
       ng-model="quantity"
     ></select>
 
     <label>Special Instructions</label>
     <textarea
+      id="item_instructions"
       ng-model="instructions"
     ></textarea>
   <button ng-click="addToOrder()">add to order</button>
-  </form>
+
   <button ng-click="closeModal()">cancel</button>
 </div>
 
