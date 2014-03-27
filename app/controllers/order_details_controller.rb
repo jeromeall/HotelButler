@@ -10,7 +10,7 @@ end
 
 
 def safe_params
-  params.require(:order_detail).permit(:quantity, :instructions)
+  params.require(:order_detail).permit(:menu_item_id, :quantity, :instructions)
 end
 
 end

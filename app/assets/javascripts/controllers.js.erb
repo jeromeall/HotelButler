@@ -155,6 +155,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
           instructions: $scope.instructions,
           roomservice_id: null
         };
+        console.log(item);
         $scope.order.push(item);
         //empty the fields after submit
         $scope.quantity='?';
@@ -179,6 +180,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         console.log("in create OrderDetails", orderResponse);
         for(var item in $scope.order){
           orderDetail = new OrderDetail($scope.order[item]);
+          console.log(orderDetail);
           orderDetail.roomservice_id = orderResponse.id;
           console.log(orderDetail);
           orderDetail.$save(
