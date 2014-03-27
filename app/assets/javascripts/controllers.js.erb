@@ -105,37 +105,26 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       //Query menu items
       $scope.menu_items = MenuItem.query({stay_id: $routeParams.stay_id});
 
-      $scope.menuItemsDetails= function() {
-        var menu = [];
-        for(var index in $scope.menu_items){
-          var item = {
-            name: $scope.menu_items[index].name,
-            description: $scope.menu_items[index].description,
-            price: $scope.menu_items[index].price,
-            menu_item_id: $scope.menu_items[index].id,
-          };
-            menu.push(item);            
-        }
-        //Temporary fix for removing empty items that get added to menu
-        for(var i in menu){
-          if( menu[i] === {}){
-            menu.splice(i, 1);
+      $scope.orderDetails = [];
+
+      
+      $scope.addToOrder = function(index){
+        var itemTracker = [];
+        for(var item in $scope.orderDetails.length){
+          if($scope.orderDetails[item].menu_item_id === $scope.menu_items[index].id){
+            $scope.orderDetails[item].quantity +=1;
+            itemTracker.push(item);
           }
         }
-        return menu;
-      };
-
-      $scope.order_details = [];
-
-      $scope.item_details = {
-        menu_item_id: null,
-        room_service_id: null,
-        quantity: 0
-      };
-
-      //increase quantity for selected menu item
-      $scope.addQuantity = function(index){
-
+        if(itemTracker.length === 0){
+          var itemDetails = {
+            menu_item_id: $scope.menu_items[index].id,
+            room_service_id: null,
+            quantity: 1
+          };
+          $scope.orderDetails.push(itemDetails);
+        }
+        console.log($scope.orderDetails);
       };
 
   
