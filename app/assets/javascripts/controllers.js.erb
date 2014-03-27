@@ -59,9 +59,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     var stay = new Stay($scope.stay);
 
     stay.$save(function() {
-      // console.log(stay.id);
-      // redirect to root path CHANGE LATER TO STAY
-      $location.path("/stays/:" + stay.id);
+      $location.path("/stays/" + stay.id);
     }, function(response) {
       //post response objects to the view
       $scope.errors = response.data.errors;
