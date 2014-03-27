@@ -1,22 +1,22 @@
 angular.module('stayServices', ['ngResource'])
-  .factory('Stay', function($resource) {
+  .factory('Stay',['$resource', function($resource) {
     return $resource('/stays/:id', { id: '@id'});
-  })
-  .factory('Hotel', function($resource) {
+  }])
+  .factory('Hotel',['$resource', function($resource) {
     return $resource('/hotels/:id', { id: '@id'});
-  })
-  .factory('Concierge', function($resource){
+  }])
+  .factory('Concierge',['$resource', function($resource){
     return $resource('/stays/:stay_id/concierges/:id', {stay_id: '@stay_id', id: '@id'});
-  })
-  .factory('Housekeeping', function($resource){
+  }])
+  .factory('Housekeeping',['$resource', function($resource){
     return $resource('/stays/:stay_id/housekeepings/:id', {stay_id: '@stay_id', id: '@id'});
-  })
-  .factory('MenuItem', function($resource){
+  }])
+  .factory('MenuItem', ['$resource', function($resource){
     return $resource('/stays/:stay_id/menu_items/:id', {stay_id: '@stay_id',  id: '@id'});
-  })
-  .factory('Roomservice', function($resource){
+  }])
+  .factory('Roomservice',['$resource', function($resource){
     return $resource('/stays/:stay_id/roomservices/:id', {stay_id: '@stay_id', id: '@id'});
-  })
-  .factory('OrderDetail', function($resource){
+  }])
+  .factory('OrderDetail', ['$resource',function($resource){
     return $resource('/stays/:stay_id/roomservices/:roomservice_id/order_details/:id', {stay_id: '@stay_id', roomservice_id: '@roomservice_id', id: "@id"});
-  });
+  }]);

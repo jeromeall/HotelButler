@@ -12,7 +12,9 @@ class StaysController < ApplicationController
   def create
     stay = Stay.new(safe_params)
     stay.guest_id = current_guest.id
-    stay.room_id = Hotel.find(params[:hotel_id]).rooms.where(vacant_stat: true).first.id
+    first_vacant_room = Hotel.find(params[:hotel_id]).rooms.where(vacant_stat: true).first
+    stay.room_id = first_vacant_room.id
+    first_vacant_room.vacant_stat = false;
     stay.save
     render json: stay
   end
