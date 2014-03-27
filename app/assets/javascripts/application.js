@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ui-date/bower_components/jquery-ui/ui/jquery-ui
+//= require jquery-ui
 //= require foundation
 //= require foundation
 //= require angular.min
