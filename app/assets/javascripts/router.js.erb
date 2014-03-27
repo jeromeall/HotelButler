@@ -15,9 +15,14 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider','$locationProvider', 
       templateUrl: "<%= asset_path('stays/new.html') %>",
       controller: "stayCreateCtrl"
     }).
-    when('/stays/:id', {
+    when('/stays/:id/', {
       templateUrl: "<%= asset_path('stays/show.html') %>",
-      controller: "stayShowCtrl"
+      controller: "stayShowCtrl",
+      // resolve: {
+      //   stay: function($route, Stay){
+      //     return Phone.get($route.current.params.key);
+      //   }
+      //}
     }).
     when('/stays/:stay_id/concierge/new', {
       templateUrl: "<%= asset_path('concierge/new.html') %>",

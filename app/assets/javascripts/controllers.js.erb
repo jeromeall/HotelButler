@@ -72,12 +72,15 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   function($scope, Stay, $routeParams){
     $scope.stay = Stay.get({id: $routeParams.id});
 
+    console.log("stayShowCtrl ...");
     $scope.checkedIn = function(){
       var checkin_date_diff = (Date.parse($scope.stay.checkin_date) - Date.now());
       var checkout_date_diff= (Date.parse($scope.stay.checkout_date) - Date.now());
       if(checkin_date_diff < 0 && checkout_date_diff > 0){
+        console.log("true ...");
         return true;
       }else{
+        console.log("false ...");
         return false;
       }
     };
