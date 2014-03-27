@@ -105,7 +105,8 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       //Query menu items
       $scope.menu_items = MenuItem.query({stay_id: $routeParams.stay_id});
 
-      $scope.orderDetails = [];
+
+      $scope.order = [];
 
       //condition for opening modal to provide item details
       $scope.openModal = true;
@@ -124,6 +125,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
       $scope.openOrderDetailsModal = function(index) {
         $scope.openModal = false;
+        console.log($scope.currentItem);
         $scope.currentItem.name = $scope.menu_items[index].name;
         $scope.currentItem.price = $scope.menu_items[index].price;
         $scope.currentItem.description = $scope.menu_items[index].description;
@@ -131,29 +133,22 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       };
 
       $scope.closeModal = function(){
-        console.log($scope.openModal);
+        //clear currentItem attributes
+
+        $scope.quantity = null;
+        $scope.instructions = null;
+        console.log($scope.currentItem);
         $scope.openModal = true;
-        return $scope.openModal;
       };
 
 
       $scope.addToOrder = function(index){
-        var itemTracker = [];
-        for(var item in $scope.orderDetails){
-          if($scope.orderDetails[item].menu_item_id === $scope.menu_items[index].id){
-            $scope.orderDetails[item].quantity +=1;
-            itemTracker.push(item);
-          }
-        }
-        if(itemTracker.length === 0){
-          var itemDetails = {
-            menu_item_id: $scope.menu_items[index].id   ,
-            room_service_id: null,
-            quantity: 1
-          };
-          $scope.orderDetails.push(itemDetails);
-        }
-        console.log($scope.orderDetails);
+        var item = {
+          menu_item_id: $scope.currentItem.menu_item_id,
+          quantity: $scope.quantity,
+          instructions: $scope.instructions
+        };
+        console.log(item);
       };
 
   
