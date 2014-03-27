@@ -46,8 +46,8 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 }])
 
 .controller('conciergeCreateCtrl',['$scope','Concierge','$routeParams', '$location',
-   function($scope, Concierge, $routeParams, $location){
-   
+ function($scope, Concierge, $routeParams, $location){
+
    $scope.concierges = Concierge.query({stay_id: $routeParams.stay_id});
    $scope.dateOptions = {
     changeYear: true,
@@ -56,7 +56,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   };
 
   $scope.createConcierge = function() {
-    
+
     var concierge = new Concierge({
       event_type: $scope.event_type,
       event_date: $scope.event_date,
@@ -67,7 +67,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     concierge.$save({
       stay_id: parseInt($routeParams.stay_id)
     },
-      function() {
+    function() {
       // $location.path('/');
     }, function(response) {
       //post response objects to the view
@@ -75,33 +75,33 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     });
   };
 
-  }])
+}])
 
-  .controller('housekeepingCreateCtrl', ['$scope', 'Housekeeping', '$routeParams','$location', 
+.controller('housekeepingCreateCtrl', ['$scope', 'Housekeeping', '$routeParams','$location', 
   function($scope, Housekeeping, $routeParams, $location){
 
 
     $scope.createHousekeeping = function(){
-      
-    var housekeeping = new Housekeeping({
-      request: $scope.request
-    });
 
-    housekeeping.$save({
-      stay_id: parseInt($routeParams.stay_id)
-    },
-    function() {
+      var housekeeping = new Housekeeping({
+        request: $scope.request
+      });
+
+      housekeeping.$save({
+        stay_id: parseInt($routeParams.stay_id)
+      },
+      function() {
       // $location.path('/')
     }, function(response) {
       $scope.errors = response.data.errors;
     });
-  };
+    };
 
   }])
 
-  .controller('roomserviceCreateCtrl', ['$scope', 'Roomservice','MenuItem', 
-    '$routeParams', '$location','OrderDetail',
-    function($scope, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
+.controller('roomserviceCreateCtrl', ['$scope', 'Roomservice','MenuItem', 
+  '$routeParams', '$location','OrderDetail',
+  function($scope, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
       //Query menu items
       $scope.menu_items = MenuItem.query({stay_id: $routeParams.stay_id});
 
@@ -144,6 +144,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       };
 
 
+      //make it so that it only adds a new item if it doesn't exist
       $scope.quantity="?";
       $scope.instructions= "";
       $scope.addToOrder = function(){
@@ -161,12 +162,36 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         console.log($scope.order);
       };
 
-  
-  
+      $scope.createOrder = function() {
+        var roomservice = new Roomservice();
 
-    
+        roomservice.$save(
+          {
+            stay_id: parseInt($routeParams.stay_id)
+          }, function(orderResponse){
+            $scope.createOrderDetails(orderResponse);
+          }
+          );
+      };
+
+      $scope.createOrderDetails = function(orderResponse){
+        var orderDetail;
+        console.log("in create OrderDetails", orderResponse);
+        for(var item in $scope.order){
+          orderDetail = new OrderDetail($scope.order[item]);
+          orderDetail.roomservice_id = orderResponse.id;
+          console.log(orderDetail);
+          orderDetail.$save(
+          {
+            stay_id: parseInt($routeParams.stay_id),
+            roomservice_id: parseInt(orderResponse.id)
+          });
+        }
+      };
 
 
 
 
-}]);
+
+
+        }]);

@@ -24,9 +24,12 @@
   <button ng-click="closeModal()">cancel</button>
 </div>
 
-<div ng-hide="!openModal" ng-repeat="menu_item in menu_items">
-  <h2>{{menu_item.name}}</h2>
-  <label>Description: </label> {{menu_item.description}}
-  <label>Price: </label>{{menu_item.price | currency}}
-  <button ng-click="openOrderDetailsModal($index)">Add to Order</button>
+<div ng-hide="!openModal">
+  <div  ng-repeat="menu_item in menu_items">
+    <h2>{{menu_item.name}}</h2>
+    <label>Description: </label> {{menu_item.description}}
+    <label>Price: </label>{{menu_item.price | currency}}
+    <button ng-click="openOrderDetailsModal($index)">Add to Order</button>
+  </div>
+  <button ng-click="createOrder()">Create</button>
 </div>
