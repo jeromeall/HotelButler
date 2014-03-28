@@ -17,9 +17,9 @@
       id="item_instructions"
       ng-model="instructions"
     ></textarea>
-  <button ng-click="addToOrder()">add to order</button>
+  <button class="button tiny" ng-click="addToOrder()">add to order</button>
 
-  <button ng-click="closeModal()">cancel</button>
+  <button class="button tiny" ng-click="closeModal()">cancel</button>
 </div>
 
 <div ng-hide="!openModal">
@@ -27,9 +27,9 @@
     <h2>{{menu_item.name}}</h2>
     <label>Description: </label> {{menu_item.description}}
     <label>Price: </label>{{menu_item.price | currency}}
-    <button ng-click="openOrderDetailsModal($index)">Add to Order</button>
+    <button  class="button tiny" ng-click="openOrderDetailsModal($index)">Add to Order</button>
   </div>
   <label>Total Price</label>
   <div>{{totalPrice() | currency}}</div></br>
-  <button ng-click="createOrder()">Create</button>
+  <button class="button tiny" ng-click="createOrder()">Create</button>
 </div>

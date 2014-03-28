@@ -13,8 +13,24 @@
  *= require smoothness/jquery-ui
  *= require_tree .
  */
-/*
 
-div  {
-  color: blue;
+
+.row.logo {
+  margin-top: 30% ;
+}
+
+.hotelButler {
+  font-size: 2em;
+}
+
+.signOut {
+  color: gray;
+}
+
+.menuItem {
+  margin: 0;
+  border: 1px solid black;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
