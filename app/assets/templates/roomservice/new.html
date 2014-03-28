@@ -1,6 +1,4 @@
- 
 <div ng-show="!openModal">
-  {{openModal}}
   <div>
     <h2>{{currentItem.name}}</h2>
     <p>{{currentItem.description}}</p>
@@ -31,5 +29,7 @@
     <label>Price: </label>{{menu_item.price | currency}}
     <button ng-click="openOrderDetailsModal($index)">Add to Order</button>
   </div>
+  <label>Total Price</label>
+  <div>{{totalPrice() | currency}}</div></br>
   <button ng-click="createOrder()">Create</button>
 </div>

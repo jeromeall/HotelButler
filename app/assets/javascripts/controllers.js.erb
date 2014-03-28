@@ -198,6 +198,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         var item = {
           menu_item_id: $scope.currentItem.menu_item_id,
           quantity: $scope.quantity,
+          price: $scope.currentItem.price,
           instructions: $scope.instructions,
           roomservice_id: null
         };
@@ -206,38 +207,57 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         //empty the fields after submit
         $scope.quantity='?';
         $scope.instructions="";
-        console.log($scope.order);
+
       };
 
       $scope.createOrder = function() {
         var roomservice = new Roomservice();
 
-        roomservice.$save(
-          {
-            stay_id: parseInt($routeParams.stay_id)
+        roomservice.$save({ stay_id: parseInt($routeParams.stay_id)
           }, function(orderResponse){
-            $scope.createOrderDetails(orderResponse);
-          }
-          );
+            console.log("Order saved.");
+            $scope.createOrderDetails(orderResponse, $scope.redirectToHome);
+          });
       };
 
-      $scope.createOrderDetails = function(orderResponse){
+      $scope.redirectToHome = function(orderResponse){
+        $location.path('/stays/'+orderResponse.stay_id+'/roomservice/'+orderResponse.id);
+        
+      };
+
+
+      $scope.createOrderDetails = function(orderResponse, callback){
         var orderDetail;
-        console.log("in create OrderDetails", orderResponse);
         for(var item in $scope.order){
           orderDetail = new OrderDetail($scope.order[item]);
-          console.log(orderDetail);
           orderDetail.roomservice_id = orderResponse.id;
-          console.log(orderDetail);
           orderDetail.$save(
           {
             stay_id: parseInt($routeParams.stay_id),
             roomservice_id: parseInt(orderResponse.id)
           });
         }
+        callback(orderResponse);
       };
 
+      $scope.totalPrice = function(){
+        var total = 0;
+        for(var item in $scope.order){
+          console.log($scope.order[item]);
+          var lineItemPrice = ($scope.order[item].price * $scope.order[item].quantity);
+          total += ($scope.order[item].price * $scope.order[item].quantity);
 
+        }
+        return total;
+      };
+
+      $scope.test = function(){
+        console.log($routeParams);
+      };
+
+      $scope.currentRoomservice = Roomservice.get({stay_id: $routeParams.stay_id, id: $routeParams.id});
+
+      $scope.currentOrderDetails = OrderDetail.query({stay_id: $routeParams.stay_id, roomservice_id: $routeParams.id});
 
 
 
