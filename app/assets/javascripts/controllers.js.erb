@@ -136,9 +136,9 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       },
       function(response) {
         $location.path('/stays/'+response.stay_id+'/housekeeping/'+response.id);
-    }, function(response) {
-      $scope.errors = response.data.errors;
-    });
+      }, function(response) {
+        $scope.errors = response.data.errors;
+      });
     };
 
     $scope.currentHousekeeping = Housekeeping.get({stay_id: $routeParams.stay_id, id: $routeParams.id});
@@ -214,10 +214,10 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         var roomservice = new Roomservice();
 
         roomservice.$save({ stay_id: parseInt($routeParams.stay_id)
-          }, function(orderResponse){
-            console.log("Order saved.");
-            $scope.createOrderDetails(orderResponse, $scope.redirectToHome);
-          });
+        }, function(orderResponse){
+          console.log("Order saved.");
+          $scope.createOrderDetails(orderResponse, $scope.redirectToHome);
+        });
       };
 
       $scope.redirectToHome = function(orderResponse){
@@ -251,15 +251,43 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         return total;
       };
 
-      $scope.test = function(){
-        console.log($routeParams);
-      };
-
-      $scope.currentRoomservice = Roomservice.get({stay_id: $routeParams.stay_id, id: $routeParams.id});
-
-      $scope.currentOrderDetails = OrderDetail.query({stay_id: $routeParams.stay_id, roomservice_id: $routeParams.id});
 
 
 
 
-        }]);
+
+
+
+    }])
+
+.controller('roomserviceShowCtrl', ['$scope', 'Roomservice','MenuItem', 
+  '$routeParams', '$location','OrderDetail',
+  function($scope, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
+
+    $scope.currentRoomservice = Roomservice.get({stay_id: $routeParams.stay_id, id: $routeParams.id});
+
+    $scope.currentOrderDetails = OrderDetail.query({stay_id: $routeParams.stay_id, roomservice_id: $routeParams.id});
+
+    $scope.menuItems = MenuItem.query({stay_id: $routeParams.stay_id});
+
+    //get the menu items attributes using the ids from currentOrderDetails
+    $scope.currentOrderItemsInfo = function(){
+      var itemIds = [];
+      for(var item in $scope.currentOrderDetails){
+        if($scope.currentOrderDetails[item].id){
+          itemIds.push($scope.currentOrderDetails[item].menu_item_id);
+        }
+      }
+      var itemsInfo = [];
+      for(var itemId in itemIds){
+        for(var index in $scope.menuItems){
+          if(itemIds[itemId] === $scope.menuItems[index].id){
+            itemsInfo.push($scope.menuItems[index]);
+          }
+        }
+      }
+      return itemsInfo;
+    };
+
+
+  }]);
