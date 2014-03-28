@@ -9,5 +9,5 @@ Bundler.require(*Rails.groups)
 module HotelButler
   class Application < Rails::Application
     config.assets.enabled = true
-    end
+  end
 end

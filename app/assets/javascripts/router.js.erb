@@ -16,7 +16,7 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider','$locationProvider', 
       controller: "stayCreateCtrl"
     }).
     when('/stays/:id/', {
-      templateUrl: "<%= asset_path('stays/show.html') %>",
+      templateUrl: "<%= asset_path('stays/show.html.erb') %>",
       controller: "stayShowCtrl"
     }).
     when('/stays/:stay_id/concierge/new', {

@@ -1,3 +1,5 @@
+<div class="service">Roomservice</div>
+
 <div ng-show="!openModal">
   <div>
     <h2>{{currentItem.name}}</h2>
@@ -23,7 +25,7 @@
 </div>
 
 <div ng-hide="!openModal">
-  <div  ng-repeat="menu_item in menu_items">
+  <div  ng-repeat="menu_item in menu_items" class="row">
     <h2>{{menu_item.name}}</h2>
     <label>Description: </label> {{menu_item.description}}
     <label>Price: </label>{{menu_item.price | currency}}
