@@ -1,17 +1,17 @@
-
-<div class="row logo">
-
-  <div class="small-6 small-centered columns hotelButler">
-    <!-- <img src="/assets/images/hotelButlerLogo.png"> -->
-    <%= image_tag 'hotelButlerLogo.png' %>
-    HotelButler
+<div id="welcome_page">
+  <div class="logo">
+    <div class="small-7 small-centered columns hotelButler">
+      <!-- <img src="/assets/images/hotelButlerLogo.png"> -->
+      <%= image_tag 'hotelButlerLogo.png' %>
+      HotelButler
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="small-5 small-centered columns">
-    <%= link_to "Sign In", new_guest_session_path %> |
-    <%= link_to "Sign Up", new_guest_registration_path %>
-    
+  <div>
+    <div class="small-6 small-centered columns">
+      <%= link_to "Sign In", new_guest_session_path %> |
+      <%= link_to "Sign Up", new_guest_registration_path %>
+
+    </div>
   </div>
 </div>

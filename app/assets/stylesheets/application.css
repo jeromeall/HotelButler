@@ -15,8 +15,9 @@
  */
 
 
-.row.logo {
-  margin-top: 30% ;
+#welcome_page {
+  width: 300px;
+  margin: 15% auto;  
 }
 
 
