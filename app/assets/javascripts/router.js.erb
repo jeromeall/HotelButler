@@ -8,7 +8,7 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider','$locationProvider', 
   $routeProvider.
     when("/",
     {
-      templateUrl: "<%= asset_path('stays/index.html') %>",
+      templateUrl: "<%= asset_path('stays/index.html.erb') %>",
       controller: "stayIndexCtrl"
     }).
     when('/stays/new',{

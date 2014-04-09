@@ -15,7 +15,7 @@
  */
 
 
-#welcome_page {
+.container {
   width: 300px;
   margin: 15% auto;  
 }
@@ -39,7 +39,7 @@
   color: white;
 }
 
-.menuItem {
+.menu_choice {
   margin: 5px;
   border: 1px solid black;
   text-align: center;
