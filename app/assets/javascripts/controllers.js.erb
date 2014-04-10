@@ -11,7 +11,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         date_difference: null,
         next_checkin: null
       };
-      timeToCheckin.date_difference = (Date.parse($scope.stays[stay].checkin_date) - Date.now());
+      timeToCheckin.date_difference = Math.abs((Date.parse($scope.stays[stay].checkin_date) - Date.now()));
       timeToCheckin.next_checkin = $scope.stays[stay];
       arrOfTimesToCheckin.push(timeToCheckin);
       
