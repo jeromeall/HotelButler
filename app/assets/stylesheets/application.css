@@ -54,6 +54,16 @@
 
 .service{
   text-align:center;
-  font-size: 1.5em;
+  font-size: 1em;
   padding: 15px;
+}
+
+.logo-hotel {
+  margin-top: 5px;
+  margin-bottom: -15%;
+}
+
+.logo-hotel-small {
+  width: 200px;
+  margin: 0 auto;
 }

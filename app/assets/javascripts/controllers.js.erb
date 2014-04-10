@@ -89,8 +89,10 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   }
   ])
 
-.controller('conciergeCreateCtrl',['$scope','Concierge','$routeParams', '$location',
- function($scope, Concierge, $routeParams, $location){
+.controller('conciergeCreateCtrl',['$scope','Stay','Concierge','$routeParams', '$location',
+ function($scope, Stay, Concierge, $routeParams, $location){
+
+  $scope.stay = Stay.get({id: $routeParams.stay_id});
 
    $scope.concierges = Concierge.query({stay_id: $routeParams.stay_id});
    $scope.dateOptions = {
