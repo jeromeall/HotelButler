@@ -5,6 +5,8 @@ class Stay < ActiveRecord::Base
   has_many :concierges
   has_many :roomservices
 
+  
+
   validate :checkout_cannot_be_after_checkin
 
   def checkout_cannot_be_after_checkin

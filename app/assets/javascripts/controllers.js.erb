@@ -68,9 +68,11 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   
 }])
 
-.controller('stayShowCtrl',['$scope', 'Stay', '$routeParams',
-  function($scope, Stay, $routeParams){
+.controller('stayShowCtrl',['$scope', 'Stay', 'Room', 'Hotel', '$routeParams',
+  function($scope, Stay, Room, Hotel, $routeParams){
     $scope.stay = Stay.get({id: $routeParams.id});
+    $scope.room = Room.get({id: $scope.stay.room_id});
+
 
     console.log("stayShowCtrl ...");
     $scope.checkedIn = function(){

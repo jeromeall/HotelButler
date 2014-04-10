@@ -20,7 +20,8 @@ class StaysController < ApplicationController
   end
 
   def show
-    render json: Stay.find(params[:id])
+    stay = Stay.find(params[:id])
+    render json: stay, :include => :room
   end
 
   def hotels
