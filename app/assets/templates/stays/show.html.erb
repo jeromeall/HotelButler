@@ -1,11 +1,6 @@
-{{room}}
-<div class="row logo-mainMenu">
 
-  <div class="small-6 small-centered columns hotelButler-mainMenu">
-    <!-- <img src="/assets/images/hotelButlerLogo.png"> -->
-    <%= image_tag 'hotelButlerLogo.png', class:"imageLogo" %>
-    HotelButler
-  </div>
+<div class="row logo-mainMenu">
+  <img ng-src="/assets/{{stay.room.hotel.logo_img}}">
 </div>
 
 <div class="row mainMenu" ng-show="checkedIn()">
