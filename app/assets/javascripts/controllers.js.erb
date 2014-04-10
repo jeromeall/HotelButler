@@ -71,7 +71,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 .controller('stayShowCtrl',['$scope', 'Stay', 'Room', 'Hotel', '$routeParams',
   function($scope, Stay, Room, Hotel, $routeParams){
     $scope.stay = Stay.get({id: $routeParams.id});
-    $scope.room = Room.get({id: $scope.stay.room_id});
+    $scope.room = Room.query({id: $scope.stay.room_id});
 
 
     console.log("stayShowCtrl ...");
