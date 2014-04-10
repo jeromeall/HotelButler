@@ -68,10 +68,9 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
   
 }])
 
-.controller('stayShowCtrl',['$scope', 'Stay', 'Room', 'Hotel', '$routeParams',
-  function($scope, Stay, Room, Hotel, $routeParams){
+.controller('stayShowCtrl',['$scope', 'Stay','$routeParams',
+  function($scope, Stay, $routeParams){
     $scope.stay = Stay.get({id: $routeParams.id});
-    $scope.room = Room.query({id: $scope.stay.room_id});
 
 
     console.log("stayShowCtrl ...");
@@ -101,6 +100,8 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
     yearRange: '2014:2020'
   };
 
+
+
   $scope.createConcierge = function() {
 
     var concierge = new Concierge({
@@ -125,9 +126,14 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
 }])
 
-.controller('housekeepingCreateCtrl', ['$scope', 'Housekeeping', '$routeParams','$location', 
-  function($scope, Housekeeping, $routeParams, $location){
+.controller('housekeepingCreateCtrl', ['$scope', 'Stay','Housekeeping', '$routeParams','$location', 
+  function($scope,Stay, Housekeeping, $routeParams, $location){
 
+    $scope.stay = Stay.get({id: $routeParams.stay_id});    
+
+    $scope.test = function(){
+      console.log($routeParams);
+    };
 
     $scope.createHousekeeping = function(){
 
@@ -145,13 +151,16 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       });
     };
 
+    //this creates a resource error due to the paramaters...look into this
     $scope.currentHousekeeping = Housekeeping.get({stay_id: $routeParams.stay_id, id: $routeParams.id});
 
   }])
 
-.controller('roomserviceCreateCtrl', ['$scope', 'Roomservice','MenuItem', 
+.controller('roomserviceCreateCtrl', ['$scope','Stay', 'Roomservice','MenuItem', 
   '$routeParams', '$location','OrderDetail',
-  function($scope, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
+  function($scope, Stay, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
+      $scope.stay = Stay.get({id: $routeParams.stay_id});
+
       //Query menu items
       $scope.menu_items = MenuItem.query({stay_id: $routeParams.stay_id});
 
@@ -264,9 +273,11 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
     }])
 
-.controller('roomserviceShowCtrl', ['$scope', 'Roomservice','MenuItem', 
+.controller('roomserviceShowCtrl', ['$scope','Stay', 'Roomservice','MenuItem', 
   '$routeParams', '$location','OrderDetail',
-  function($scope, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
+  function($scope, Stay, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
+
+    $scope.stay = Stay.get({id: $routeParams.stay_id});
 
     $scope.currentRoomservice = Roomservice.get({stay_id: $routeParams.stay_id, id: $routeParams.id});
 
