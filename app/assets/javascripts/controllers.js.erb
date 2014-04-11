@@ -241,14 +241,15 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
       $scope.createOrderDetails = function(orderResponse, callback){
         var orderDetail;
+        
         for(var item in $scope.order){
+          console.log("orderResponse: ",orderResponse);
           orderDetail = new OrderDetail($scope.order[item]);
-          orderDetail.roomservice_id = orderResponse.id;
           orderDetail.$save(
           {
             stay_id: parseInt($routeParams.stay_id),
-            roomservice_id: parseInt(orderResponse.id)
-          });
+            roomservice_id: orderResponse.id
+          }, console.log("orderDetail: ", orderDetail));
         }
         callback(orderResponse);
       };
