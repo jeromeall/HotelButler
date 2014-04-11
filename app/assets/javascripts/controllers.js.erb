@@ -159,42 +159,43 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 .controller('roomserviceCreateCtrl', ['$scope','Stay', 'Roomservice','MenuItem', 
   '$routeParams', '$location','OrderDetail',
   function($scope, Stay, Roomservice, MenuItem, $routeParams, $location, OrderDetail) {
+      // Get the current stay 
       $scope.stay = Stay.get({id: $routeParams.stay_id});
 
-      //Query menu items
+      // Query menu items
       $scope.menu_items = MenuItem.query({stay_id: $routeParams.stay_id});
 
-
+      // Keeps track of the order items
       $scope.order = [];
 
-      //condition for opening modal to provide item details
-      $scope.openModal = true;
-      
-      //item object for modal
+
+      // Keeps track of display info for add to order modal
       $scope.currentItem = {
         name: "",
         price: "",
         description: "",
         menu_item_id: 0,
-        roomservice_id: "",
+        roomservice_id: 0,
         instructions: "",
       };
 
-      $scope.numItems = [1,2,3,4,5,6,7,8,9,10];
+      // Handles ng-show for opening/closing "Add to order" modal
+      $scope.openModal = true;
 
+      // Opens the modal to add item to order details,
       $scope.openOrderDetailsModal = function(index) {
         $scope.openModal = false;
-        console.log($scope.currentItem);
+        // update the current item info
         $scope.currentItem.name = $scope.menu_items[index].name;
         $scope.currentItem.price = $scope.menu_items[index].price;
         $scope.currentItem.description = $scope.menu_items[index].description;
         $scope.currentItem.menu_item_id = $scope.menu_items[index].id;
-        console.log($scope.currentItem);
-        return $scope.currentItem;
       };
 
+      // quantity select drop down
+      $scope.numItems = [1,2,3,4,5,6,7,8,9,10];
 
-
+      // cancel adding to order
       $scope.closeModal = function(){
         //clear currentItem attributes
         $scope.quantity='?';
@@ -203,7 +204,6 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
       };
 
 
-      //make it so that it only adds a new item if it doesn't exist
       $scope.quantity="?";
       $scope.instructions= "";
       $scope.addToOrder = function(){
@@ -215,12 +215,10 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
           instructions: $scope.instructions,
           roomservice_id: null
         };
-        console.log(item);
         $scope.order.push(item);
         //empty the fields after submit
         $scope.quantity='?';
         $scope.instructions="";
-
       };
 
       $scope.createOrder = function() {
@@ -228,7 +226,7 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
 
         roomservice.$save({ stay_id: parseInt($routeParams.stay_id)
         }, function(orderResponse){
-          console.log("Order saved.");
+          console.log("Order saved.", orderResponse);
           $scope.createOrderDetails(orderResponse, $scope.redirectToHome);
         });
       };
@@ -243,13 +241,13 @@ hotelButlerCtrls.controller('stayIndexCtrl',['$scope','Stay', function($scope, S
         var orderDetail;
         
         for(var item in $scope.order){
-          console.log("orderResponse: ",orderResponse);
           orderDetail = new OrderDetail($scope.order[item]);
+          orderDetail.roomservice_id = orderResponse.id;
           orderDetail.$save(
           {
             stay_id: parseInt($routeParams.stay_id),
             roomservice_id: orderResponse.id
-          }, console.log("orderDetail: ", orderDetail));
+          });
         }
         callback(orderResponse);
       };
