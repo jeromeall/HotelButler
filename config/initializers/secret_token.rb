@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-HotelButler::Application.config.secret_key_base = '4cbc1bdc05648ac0cd32d4e823d93608f359455582852ced842515a9bd29ec9346df150a1441f24d02645a2c5e37c1aaa45de150e2cfb494955d0f9a1d1aff3b'
+HotelButler::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
