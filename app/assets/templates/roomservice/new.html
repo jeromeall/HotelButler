@@ -1,13 +1,15 @@
-<div class="logo-hotel-small">
-   <img ng-src="/assets/{{stay.room.hotel.logo_img}}">
-</div>
-
-<div ng-show="!openModal">
-  <div>
-    <h2>{{currentItem.name}}</h2>
-    <p>{{currentItem.description}}</p>
-    <p>{{currentItem.price | currency }}</p>
+<div class="container">
+  <div class="logo-hotel">
+     <img ng-src="/assets/{{stay.room.hotel.logo_img}}">
   </div>
+
+  <!-- Add Item To order Details -->
+  <div ng-show="!openModal">
+    <div>
+      <h2>{{currentItem.name}}</h2>
+      <p>{{currentItem.description}}</p>
+      <p>{{currentItem.price | currency }}</p>
+    </div>
 
     <label>Quantity</label>
     <select
@@ -21,20 +23,28 @@
       id="item_instructions"
       ng-model="instructions"
     ></textarea>
-  <button class="button tiny" ng-click="addToOrder()">add to order</button>
+    <button class="button tiny" ng-click="addToOrder()">add to order</button>
 
-  <button class="button tiny" ng-click="closeModal()">cancel</button>
-</div>
-
-<div ng-hide="!openModal">
-  <div class="service">Roomservice</div>
-  <div  ng-repeat="menu_item in menu_items" class="row">
-    <h2>{{menu_item.name}}</h2>
-    <label>Description: </label> {{menu_item.description}}
-    <label>Price: </label>{{menu_item.price | currency}}
-    <button  class="button tiny" ng-click="openOrderDetailsModal($index)">Add to Order</button>
+    <button class="button tiny" ng-click="closeModal()">cancel</button>
   </div>
-  <label>Total Price</label>
-  <div>{{totalPrice() | currency}}</div></br>
-  <button class="button tiny" ng-click="createOrder()">Create</button>
+
+
+
+  <!-- Room Service Order -->
+  <div ng-hide="!openModal">
+    <div class="header">
+      <h3>Roomservice</h3>
+    </div>
+    
+    <div  ng-repeat="menu_item in menu_items" class="menu_item_container">
+      <h3>{{menu_item.name}}</h3>
+      
+      <label>Description: </label> {{menu_item.description}}
+      <label>Price: </label>{{menu_item.price | currency}}
+      <button  class="button tiny" ng-click="openOrderDetailsModal($index)">Add to Order</button>
+    </div>
+    <label>Total Price</label>
+    <div>{{totalPrice() | currency}}</div></br>
+    <button class="button tiny" ng-click="createOrder()">Create</button>
+  </div>
 </div>

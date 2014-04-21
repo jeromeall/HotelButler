@@ -12,7 +12,7 @@ hotelButlerRouter.config(['$routeProvider','$httpProvider','$locationProvider', 
       controller: "stayIndexCtrl"
     }).
     when('/stays/new',{
-      templateUrl: "<%= asset_path('stays/new.html') %>",
+      templateUrl: "<%= asset_path('stays/new.html.erb') %>",
       controller: "stayCreateCtrl"
     }).
     when('/stays/:id/', {
