@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
+
+  # Site Index - Welcome page
   def index
   end
 
-  def home
-  end
 end

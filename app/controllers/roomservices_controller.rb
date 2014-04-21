@@ -1,10 +1,12 @@
 class RoomservicesController < ApplicationController
   respond_to :json
 
+  # respond with Roomservice requests belonging to current stay
   def index
     render json: Roomservice.where(stay_id: params[:stay_id])
   end
 
+  # for the current stay, create a new Roomservice order
   def create
     stay = Stay.find(params[:stay_id])
     roomservice = stay.roomservices.create()
@@ -14,7 +16,6 @@ class RoomservicesController < ApplicationController
   def show
     stay = Stay.find(params[:stay_id])
     roomservice = stay.roomservices.find(params[:id])
-    # order_details = roomservice.order_details.all
     render json: roomservice
   end
 
