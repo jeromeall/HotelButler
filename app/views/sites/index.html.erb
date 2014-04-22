@@ -1,17 +1,13 @@
-<div class="container">
-  <div class="logo">
-    <div class="small-7 small-centered columns hotelButler">
-      <!-- <img src="/assets/images/hotelButlerLogo.png"> -->
-      <%= image_tag 'hotelButlerLogo.png' %>
-      HotelButler
-    </div>
-  </div>
+<div class="container logo welcome">
+  <%= image_tag 'hotelButlerLogo.png'%></br>
+  <h2>HotelButler</h2>
+</div>
 
+<div class="container">
   <div>
     <div class="small-6 small-centered columns">
       <%= link_to "Sign In", new_guest_session_path %> |
       <%= link_to "Sign Up", new_guest_registration_path %>
-
     </div>
   </div>
 </div>
