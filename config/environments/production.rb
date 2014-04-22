@@ -3,7 +3,7 @@ HotelButler::Application.configure do
 
   # Add Modernizr to precompiled assets for production in config/enviroments/production.rb.
   config.assets.precompile += %w( vendor/modernizr.js )
-
+  config.assets.compile = true
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -59,7 +59,7 @@ HotelButler::Application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
-
+  
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
