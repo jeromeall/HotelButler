@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="logo-hotel">
+    <img ng-src="/assets/{{stay.room.hotel.logo_img}}">
+  </div>
+  
+  <div class="header">
+    <h3>Housekeeping</h3>
+  </div>
+
+  <form name="newHouseekingForm" ng-submit="createHousekeeping()" ng-controller="housekeepingCreateCtrl" class="houseekingForm" novalidate>
+
+    <!-- request -->
+    <div class="form-group">
+     <label>How can we help you?</label>
+     <textarea 
+     type="text" 
+     ng-model="request"
+     name="reservation"
+     required
+     ></textarea>
+   </div>
+
+   <button class="button tiny" type="submit">Create Request</button>
+
+ </form>
+</div>
