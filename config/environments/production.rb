@@ -3,7 +3,7 @@ HotelButler::Application.configure do
 
   # Add Modernizr to precompiled assets for production in config/enviroments/production.rb.
   config.assets.precompile += %w( vendor/modernizr.js )
-
+  # TEST 
   # Code is not reloaded between requests.
   config.cache_classes = true
 
